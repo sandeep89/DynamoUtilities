@@ -15,7 +15,7 @@ var scanData = function(params) {
             console.log(err);
         } // an error occurred
         else {
-            console.log(data);
+            console.log(JSON.stringify(data));
             if (data.LastEvaluatedKey) {
                 params['LastEvaluatedKey'] = data.LastEvaluatedKey;
                 scanData(params);
