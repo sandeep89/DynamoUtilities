@@ -7,30 +7,31 @@ AWS.config.update({
     secretAccessKey: "sample-aws-secret"
 });
 var dynamodb = new AWS.DynamoDB();
-
-
-var deleteData = function (tableName) {
 var docClient = new AWS.DynamoDB.DocumentClient();
-    var params = {
-        TableName: 'prod-tableName',
-	FilterExpression: '(account_id = :ai) AND (active = :act)',
-        ExpressionAttributeValues: {
-        ':ai': '589390',
-		':act': true
-        },
-        Select: 'ALL_ATTRIBUTES'
-    };
-    docClient.scan(params, function (err, data) {
+
+var scanData = function(params) {
+    docClient.scan(params, function(err, data) {
         if (err) {
             console.log(err);
         } // an error occurred
         else {
-	console.log(data);
-/*            data.Items.forEach(function(session){
-                console.log(session.oneness_token);
-            })*/
+            console.log(data);
+            if (data.LastEvaluatedKey) {
+                params['LastEvaluatedKey'] = data.LastEvaluatedKey;
+                scanData(params);
+            }
         } // successful response
     });
 };
 
-deleteData('tableName');
+var params = {
+    TableName: 'prod-tableName',
+    FilterExpression: '(account_id = :ai) AND (active = :act)',
+    ExpressionAttributeValues: {
+        ':ai': '589390',
+        ':act': true
+    },
+    Select: 'ALL_ATTRIBUTES'
+};
+
+scanData(params);
