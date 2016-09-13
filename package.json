@@ -1,0 +1,24 @@
+{
+  "name": "coolstuff",
+  "version": "1.0.0",
+  "description": "#### Dynamo Delete data",
+  "main": "deleteDyanmodbData.js",
+  "dependencies": {
+    "aws-sdk": "^2.5.6",
+    "node-redshift": "^0.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandeep89/coolStuff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sandeep89/coolStuff/issues"
+  },
+  "homepage": "https://github.com/sandeep89/coolStuff#readme"
+}
