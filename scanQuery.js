@@ -17,7 +17,7 @@ var scanData = function(params) {
         else {
             console.log(JSON.stringify(data));
             if (data.LastEvaluatedKey) {
-                params['LastEvaluatedKey'] = data.LastEvaluatedKey;
+                params['ExclusiveStartKey'] = data.LastEvaluatedKey;
                 scanData(params);
             }
         } // successful response
